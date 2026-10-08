@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as CollectionsAllRouteImport } from './routes/collections/all'
+import { Route as PagesContactRouteImport } from './routes/pages/contact'
+import { Route as PagesFaqRouteImport } from './routes/pages/faq'
+import { Route as PagesPrivacyRouteImport } from './routes/pages/privacy'
+import { Route as PagesRefundRouteImport } from './routes/pages/refund'
+import { Route as PagesStoresRouteImport } from './routes/pages/stores'
+import { Route as PagesStoryRouteImport } from './routes/pages/story'
+import { Route as PagesSubscriptionRouteImport } from './routes/pages/subscription'
+import { Route as PagesTermsRouteImport } from './routes/pages/terms'
+import { Route as ProductsFlavorRouteImport } from './routes/products/$flavor'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsAllRoute = CollectionsAllRouteImport.update({
+  id: '/collections/all',
+  path: '/collections/all',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesContactRoute = PagesContactRouteImport.update({
+  id: '/pages/contact',
+  path: '/pages/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesFaqRoute = PagesFaqRouteImport.update({
+  id: '/pages/faq',
+  path: '/pages/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesPrivacyRoute = PagesPrivacyRouteImport.update({
+  id: '/pages/privacy',
+  path: '/pages/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesRefundRoute = PagesRefundRouteImport.update({
+  id: '/pages/refund',
+  path: '/pages/refund',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesStoresRoute = PagesStoresRouteImport.update({
+  id: '/pages/stores',
+  path: '/pages/stores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesStoryRoute = PagesStoryRouteImport.update({
+  id: '/pages/story',
+  path: '/pages/story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesSubscriptionRoute = PagesSubscriptionRouteImport.update({
+  id: '/pages/subscription',
+  path: '/pages/subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesTermsRoute = PagesTermsRouteImport.update({
+  id: '/pages/terms',
+  path: '/pages/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsFlavorRoute = ProductsFlavorRouteImport.update({
+  id: '/products/$flavor',
+  path: '/products/$flavor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
+  '/collections/all': typeof CollectionsAllRoute
+  '/pages/contact': typeof PagesContactRoute
+  '/pages/faq': typeof PagesFaqRoute
+  '/pages/privacy': typeof PagesPrivacyRoute
+  '/pages/refund': typeof PagesRefundRoute
+  '/pages/stores': typeof PagesStoresRoute
+  '/pages/story': typeof PagesStoryRoute
+  '/pages/subscription': typeof PagesSubscriptionRoute
+  '/pages/terms': typeof PagesTermsRoute
+  '/products/$flavor': typeof ProductsFlavorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
+  '/collections/all': typeof CollectionsAllRoute
+  '/pages/contact': typeof PagesContactRoute
+  '/pages/faq': typeof PagesFaqRoute
+  '/pages/privacy': typeof PagesPrivacyRoute
+  '/pages/refund': typeof PagesRefundRoute
+  '/pages/stores': typeof PagesStoresRoute
+  '/pages/story': typeof PagesStoryRoute
+  '/pages/subscription': typeof PagesSubscriptionRoute
+  '/pages/terms': typeof PagesTermsRoute
+  '/products/$flavor': typeof ProductsFlavorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/404': typeof R404Route
+  '/collections/all': typeof CollectionsAllRoute
+  '/pages/contact': typeof PagesContactRoute
+  '/pages/faq': typeof PagesFaqRoute
+  '/pages/privacy': typeof PagesPrivacyRoute
+  '/pages/refund': typeof PagesRefundRoute
+  '/pages/stores': typeof PagesStoresRoute
+  '/pages/story': typeof PagesStoryRoute
+  '/pages/subscription': typeof PagesSubscriptionRoute
+  '/pages/terms': typeof PagesTermsRoute
+  '/products/$flavor': typeof ProductsFlavorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/404'
+    | '/collections/all'
+    | '/pages/contact'
+    | '/pages/faq'
+    | '/pages/privacy'
+    | '/pages/refund'
+    | '/pages/stores'
+    | '/pages/story'
+    | '/pages/subscription'
+    | '/pages/terms'
+    | '/products/$flavor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/404'
+    | '/collections/all'
+    | '/pages/contact'
+    | '/pages/faq'
+    | '/pages/privacy'
+    | '/pages/refund'
+    | '/pages/stores'
+    | '/pages/story'
+    | '/pages/subscription'
+    | '/pages/terms'
+    | '/products/$flavor'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/collections/all'
+    | '/pages/contact'
+    | '/pages/faq'
+    | '/pages/privacy'
+    | '/pages/refund'
+    | '/pages/stores'
+    | '/pages/story'
+    | '/pages/subscription'
+    | '/pages/terms'
+    | '/products/$flavor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
+  CollectionsAllRoute: typeof CollectionsAllRoute
+  PagesContactRoute: typeof PagesContactRoute
+  PagesFaqRoute: typeof PagesFaqRoute
+  PagesPrivacyRoute: typeof PagesPrivacyRoute
+  PagesRefundRoute: typeof PagesRefundRoute
+  PagesStoresRoute: typeof PagesStoresRoute
+  PagesStoryRoute: typeof PagesStoryRoute
+  PagesSubscriptionRoute: typeof PagesSubscriptionRoute
+  PagesTermsRoute: typeof PagesTermsRoute
+  ProductsFlavorRoute: typeof ProductsFlavorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/all': {
+      id: '/collections/all'
+      path: '/collections/all'
+      fullPath: '/collections/all'
+      preLoaderRoute: typeof CollectionsAllRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/contact': {
+      id: '/pages/contact'
+      path: '/pages/contact'
+      fullPath: '/pages/contact'
+      preLoaderRoute: typeof PagesContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/faq': {
+      id: '/pages/faq'
+      path: '/pages/faq'
+      fullPath: '/pages/faq'
+      preLoaderRoute: typeof PagesFaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/privacy': {
+      id: '/pages/privacy'
+      path: '/pages/privacy'
+      fullPath: '/pages/privacy'
+      preLoaderRoute: typeof PagesPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/refund': {
+      id: '/pages/refund'
+      path: '/pages/refund'
+      fullPath: '/pages/refund'
+      preLoaderRoute: typeof PagesRefundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/stores': {
+      id: '/pages/stores'
+      path: '/pages/stores'
+      fullPath: '/pages/stores'
+      preLoaderRoute: typeof PagesStoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/story': {
+      id: '/pages/story'
+      path: '/pages/story'
+      fullPath: '/pages/story'
+      preLoaderRoute: typeof PagesStoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/subscription': {
+      id: '/pages/subscription'
+      path: '/pages/subscription'
+      fullPath: '/pages/subscription'
+      preLoaderRoute: typeof PagesSubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/terms': {
+      id: '/pages/terms'
+      path: '/pages/terms'
+      fullPath: '/pages/terms'
+      preLoaderRoute: typeof PagesTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$flavor': {
+      id: '/products/$flavor'
+      path: '/products/$flavor'
+      fullPath: '/products/$flavor'
+      preLoaderRoute: typeof ProductsFlavorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R404Route: R404Route,
+  CollectionsAllRoute: CollectionsAllRoute,
+  PagesContactRoute: PagesContactRoute,
+  PagesFaqRoute: PagesFaqRoute,
+  PagesPrivacyRoute: PagesPrivacyRoute,
+  PagesRefundRoute: PagesRefundRoute,
+  PagesStoresRoute: PagesStoresRoute,
+  PagesStoryRoute: PagesStoryRoute,
+  PagesSubscriptionRoute: PagesSubscriptionRoute,
+  PagesTermsRoute: PagesTermsRoute,
+  ProductsFlavorRoute: ProductsFlavorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
