@@ -9,6 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        sticker: "btn-ombre btn-cream",
+        coral: "btn-ombre btn-coral",
+        ink: "btn-ombre btn-ink",
+        sage: "btn-ombre btn-sage",
+        nav: "nav-pill",
+        circle: "circle-button",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
