@@ -1,24 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+import {createFileRoute,Link} from '@tanstack/react-router';
+import {useState,useEffect,useRef} from 'react';
+import {ArrowLeft,ArrowRight,Instagram} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {flavors,picnic,court,meta} from '@/lib/flavors';
+import {Doodle} from '@/components/doodle';
+import {RainbowHead} from '@/components/rainbow-head';
+import {Wave} from '@/components/site-shell';
+import {Benefits,FlavorPanels,ProductCard,SubscribeCTA} from '@/components/shop-parts';
+export const Route=createFileRoute('/')({head:()=>meta('Let the good times fizz','Meet FIZZDAY, a colorful sparkling yerba tea universe. Explore four bright flavors and bring a little fizz to your day.'),component:Home});
+function Home(){const [slide,setSlide]=useState(0);const [productStart,setProductStart]=useState(0);const intro=useRef<HTMLElement>(null);const falling=useRef<HTMLImageElement>(null);const f=flavors[slide];
+ useEffect(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const id=setInterval(()=>setSlide(s=>(s+1)%4),6000);return()=>clearInterval(id)},[]);
+ useEffect(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const onScroll=()=>{const section=intro.current,can=falling.current;if(!section||!can)return;const progress=Math.max(0,Math.min(1,(window.innerHeight-section.getBoundingClientRect().top)/(window.innerHeight+section.offsetHeight*.35)));can.style.transform=`translate(${Math.sin(progress*Math.PI)*70}px, ${progress*230}px) rotate(${progress*360+18}deg) scale(${1+progress*.35})`};onScroll();window.addEventListener('scroll',onScroll,{passive:true});return()=>window.removeEventListener('scroll',onScroll)},[]);
+ return <><h1 className="sr-only">FIZZDAY sparkling yerba tea — let the good times fizz</h1><section className={`hero ${f.color}`} aria-label="Explore FIZZDAY flavors"><p className="hero-kicker">SPARKLING TEA. MAIN CHARACTER ENERGY.</p><Doodle kind={slide===0?'hand':slide===1?'sun':slide===2?'cloud':'rocket'} className="hero-doodle d1"/><Doodle kind={slide===0?'ball':slide===1?'flower':slide===2?'leaf':'ball'} className="hero-doodle d2"/><Doodle kind="flower" className="hero-doodle d3"/><Doodle kind={slide===0?'melon':slide===1?'sun':slide===2?'smile':'cloud'} className="hero-doodle d4"/><Doodle kind="spark" className="hero-doodle d5"/><Doodle kind="spark" className="hero-doodle d6"/><Doodle kind="spark" className="hero-doodle d7"/><span className="doodle-caption">a little wave<br/>to your taste buds.</span><span className="doodle-caption right-caption">fresh out of<br/>the ordinary.</span><div className="hero-arrow left"><Button variant="circle" aria-label="Previous flavor" onClick={()=>setSlide((slide+3)%4)}><ArrowLeft/></Button></div><div className="hero-center"><div className="hero-disc"><img key={f.slug} src={f.image} className="hero-can" alt={`${f.name} FIZZDAY sparkling tea can`} width={350} height={850} fetchPriority="high"/></div><Button variant="sticker" asChild><Link to="/products/$flavor" params={{flavor:f.slug}}>{f.name}<ArrowRight/></Link></Button></div><div className="hero-arrow right"><Button variant="circle" aria-label="Next flavor" onClick={()=>setSlide((slide+1)%4)}><ArrowRight/></Button></div><p className="hero-bottom">YOUR DAILY DOSE OF<br/>“OH, THAT’S GOOD.”</p><div className="slide-count"><span>0{slide+1} / 04</span>{[0,1,2,3].map(n=><span className={`slide-dot ${slide===n?'active':''}`} key={n}/>)}</div><Wave className="hero-wave"/></section>
+ <section className="section intro" ref={intro}><RainbowHead text="FIZZDAY? YERBA TEA? WHAT’S THE BIG FIZZ?"/><p>(glad you asked. let’s spill the tea.)</p><div className="bubble-cloud" aria-hidden="true">{Array.from({length:14},(_,i)=><span className="bubble" key={i}/>)}</div><img ref={falling} className="falling-can" src={flavors[0].image} width={200} height={450} alt="A tumbling FIZZDAY melon can" loading="lazy"/><Doodle kind="smile" className="intro-stamp"/></section>
+ <Benefits/>
+ <section className="section collage"><RainbowHead text="GOOD STUFF ONLY" className="section-title"/><div className="collage-grid"><img src={picnic} alt="Friends sharing colorful sparkling tea at the skatepark" width={1200} height={912} loading="lazy"/><img src={court} alt="FIZZDAY cans in the sunshine on a blue tennis court" width={1200} height={912} loading="lazy"/></div><p className="eyebrow center">LESS SCROLLING. MORE SIPPING.</p></section>
+ <section aria-label="Our flavors"><div className="flavor-heading"><RainbowHead text="FLAVORS"/><p>FOUR PERSONALITIES.<br/>ONE VERY GOOD TIME.</p></div><FlavorPanels/></section>
+ <section className="section products-section"><h2>Your fridge’s new friends</h2><div className="products-top"><Button variant="ink" asChild><Link to="/collections/all">Meet the whole crew<ArrowRight/></Link></Button><div className="flex gap-3"><Button variant="circle" aria-label="Previous recommended products" onClick={()=>setProductStart((productStart+4)%5)}><ArrowLeft/></Button><Button variant="circle" aria-label="Next recommended products" onClick={()=>setProductStart((productStart+1)%5)}><ArrowRight/></Button></div></div><div className="product-grid">{Array.from({length:5},(_,i)=>flavors[(productStart+i)%5]).map(fl=><ProductCard flavor={fl} key={fl.slug}/>)}</div></section>
+ <SubscribeCTA/>
+ <section className="instagram-band"><p className="eyebrow">THE FIZZDAY PHOTO DIARY</p><RainbowHead text="GOOD TIMES LOOK GOOD ON YOU."/><div className="instagram-grid">{[picnic,court,picnic,court].map((photo,i)=><img key={i} src={photo} alt={i%2?'Sunny cans on the court':'Colorful picnic moments with the crew'} width={1200} height={912} loading="lazy"/>)}</div><Button variant="ghost" className="social-link" aria-label="Instagram profile awaiting confirmation" disabled><Instagram/></Button></section></>
 }
